@@ -1,10 +1,10 @@
 let count = 0;
-
+let opacity;
 function deleteButton () {
     localStorage.removeItem(count.toString());
     $(this).closet().remove();
 }
-
+$('.deleteAll').on('click', () => {$('.to-do-list').empty(); localStorage.clear(); count = 0})
 
 
 $('form').on('submit', (e) =>
@@ -16,8 +16,8 @@ $('form').on('submit', (e) =>
      let savedText = localStorage.getItem(`${count}`);
      let $list = $(`<div>${savedText}<div>`);
      $list.addClass(`${count}`);
-     $(`.${count}`).css('opacity', 1);
-     let $button = $(`<button class = "delete">delete</button>`);
+     let $button = $(`<button>delete</button>`);
+     $button.addClass('delete');
      $('.to-do-list').append($list);
      $(`.${count}`).append($button);
      $('.text').val('');
@@ -25,7 +25,13 @@ $('form').on('submit', (e) =>
 }
  );
 
-$('.delete').on('click', deleteButton);
+$(document).on('click','.delete', function () {
+    this.parentElement.remove();
+    console.log(typeof(this.parentElement.className));
+    localStorage.removeItem(`${this.parentElement.className}`);
+
+});
+
 
  function allStorage() {
 
@@ -35,8 +41,10 @@ $('.delete').on('click', deleteButton);
     i=keys.length;
      while ( i-- > 1 ) {
          text = localStorage.getItem(keys[keys.length - i - 1]);
-         console.log(keys.length-i);
-         console.log(keys[keys.length - i]);
+
+
+
+
          let $list = $(`<div>${text}<div>`);
          $list.addClass(`${keys[keys.length - i - 1]}`);
          let $button = $(`<button class = "delete">delete</button>`);
@@ -44,8 +52,6 @@ $('.delete').on('click', deleteButton);
          $(`.${keys[keys.length - i - 1]}`).append($button);
          count = localStorage.getItem('count');
     }
-    console.log(items);
-    console.log(COUNT);
 }
 
  $(document).ready(allStorage);

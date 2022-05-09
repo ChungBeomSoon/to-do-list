@@ -8,6 +8,19 @@ h1{
     text-align: center;
 }
 
+.show {
+    opacity: 1;
+}    
+
+.deleteAll{
+    background: white;
+    border: 0;
+}
+
+button:hover {
+    color : grey;
+}
+
 .form{
     display: flex;
     justify-content: center;
@@ -27,10 +40,9 @@ h1{
     display: flex;
     flex-direction: column;
     transition: 1s;
-    opacity: 0.5;
 }
 
-.to-do-list > div {
+.to-do-list div {
     font-size: larger;
     display: flex;
     border-bottom: solid 1px black;
@@ -38,9 +50,10 @@ h1{
     margin: 10px;
     justify-content: space-between;
     align-items: center;
+    transition: 1s;
 }
 
-.to-do-list button {
+.delete {
     border-radius: 50px;
     height: fit-content;
     width: fit-content;
@@ -48,3 +61,5 @@ h1{
     background: white;
     border: solid 1px black;
 }
+
+
